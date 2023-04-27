@@ -7,17 +7,25 @@
         <title>Create Employee</title>
     </head>
     <body>
-        <form action="{{ route('employees.store') }}" method="POST">
+        <form
+            action="{{ route('employees.update', ['employee' => $employee->id]) }}"
+            method="POST"
+        >
+            @csrf @method('PUT')
+
             <label>Employee Name</label>
-            <input type="text" name="name" value="{{ $employee }}"/>
+            <input type="text" name="employee" value="{{ $employee->id }}" />
+
+            <label>Employee Name</label>
+            <input type="text" name="name" value="{{ $employee->name }}" />
 
             <label>Employee Age</label>
-            <input type="text" name="age" />
+            <input type="text" name="age" value="{{ $employee->age }}" />
 
             <label>Employee Email</label>
-            <input type="text" name="email" />
+            <input type="text" name="email" value="{{ $employee->email }}" />
 
-            <button type="submit">Create</button>
+            <button type="submit">Edit Employee</button>
         </form>
     </body>
 </html>
