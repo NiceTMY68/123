@@ -41,7 +41,7 @@ class EmployeeControllerWithRepos extends Controller
 
   public function store(Request $request)
   {
-    $employee = EmployeeRepos::insertEmployee($request->all());
+    $employee = EmployeeRepos::insertEmployee($request->except('_token'));
 
     return redirect('employees');
   }
