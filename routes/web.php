@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 });
-Route::group(['/prefix' => '/model'], function (){
-   Route::get('',[
-      'uses' => 'ModelController@index',
-      'as' => 'clientView.model'
-   ]);
+Route::group(['/prefix' => '/model'], function () {
+    Route::get('', [
+        'uses' => 'ModelController@index',
+        'as' => 'clientView.model'
+    ]);
 });
 Route::group(['prefix' => 'client'], function () {
     Route::get('', [
@@ -32,25 +33,25 @@ Route::group(['prefix' => 'client'], function () {
         'uses' => 'ClientController@show',
         'as' => 'clientView.show'
     ]);
-    Route::get('showC/{id}',[
+    Route::get('showC/{id}', [
         'uses' => 'ClientController@showC',
         'as' => 'clientView.showcategorydetail'
     ]);
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'ClientController@create',
         'as' => 'clientView.createC'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'ClientController@store',
         'as' => 'clientView.storeC'
     ]);
 
-//    Route::get('showByCategory/{id}',[
-//        'uses' => 'ClientController@showByCategory',
-//        'as' => 'clientView.viewCategory'
-//    ]);
-    Route::get('viewCategory/',[
+    //    Route::get('showByCategory/{id}',[
+    //        'uses' => 'ClientController@showByCategory',
+    //        'as' => 'clientView.viewCategory'
+    //    ]);
+    Route::get('viewCategory/', [
         'uses' => 'ClientController@viewCategory',
         'as' => 'clientView.viewCategory'
     ]);
@@ -62,50 +63,50 @@ Route::group(['prefix' => 'client'], function () {
 
     Route::get('details/{id}', "ClientController@details")
         ->name('client.details');
-
 });
 //// Customer
-Route::group(['prefix' => 'CentrallZoo'], function (){
-   Route::get('',[
-       'uses' => 'CustomerControllerWithRepos@index',
-       'as' => 'customer.index'
-   ]);
-    Route::get('',[
+Route::group(['prefix' => 'CentrallZoo'], function () {
+    Route::get('', [
+        'uses' => 'CustomerControllerWithRepos@index',
+        'as' => 'customer.index'
+    ]);
+    Route::get('', [
         'uses' => 'CustomerControllerWithRepos@signup',
-        'as' => 'customer.signup'    ]);
+        'as' => 'customer.signup'
+    ]);
 });
 
 
 //'middleware' => ['manual.auth']
 
 // Admin
-Route::group(['prefix' => 'admin','middleware' => ['manual.auth'] ], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['manual.auth']], function () {
     Route::get('', [
         'uses' => 'AdminControllerWithRepos@index',
         'as' => 'admin.index'
     ]);
 
-    Route::get('show/{id}',[
+    Route::get('show/{id}', [
         'uses' => 'AdminControllerWithRepos@show',
         'as' => 'admin.show'
     ]);
 
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'AdminControllerWithRepos@create',
         'as' => 'admin.create'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'AdminControllerWithRepos@store',
         'as' => 'admin.store'
     ]);
 
-    Route::get('update/{id}',[
+    Route::get('update/{id}', [
         'uses' => 'AdminControllerWithRepos@edit',
         'as' => 'admin.edit'
     ]);
 
-    Route::post('update/{id}',[
+    Route::post('update/{id}', [
         'uses' => 'AdminControllerWithRepos@update',
         'as' => 'admin.update'
     ]);
@@ -115,7 +116,7 @@ Route::group(['prefix' => 'admin','middleware' => ['manual.auth'] ], function ()
         'as' => 'admin.confirm'
     ]);
 
-    Route::post('delete/{id}',[
+    Route::post('delete/{id}', [
         'uses' => 'AdminControllerWithRepos@destroy',
         'as' => 'admin.destroy'
     ]);
@@ -123,33 +124,33 @@ Route::group(['prefix' => 'admin','middleware' => ['manual.auth'] ], function ()
 
 
 // Category
-Route::group(['prefix' => 'category','middleware' => ['manual.auth'] ], function () {
+Route::group(['prefix' => 'category', 'middleware' => ['manual.auth']], function () {
     Route::get('', [
         'uses' => 'CategoryControllerWithRepos@index',
         'as' => 'category.index'
     ]);
 
-    Route::get('show/{id}',[
+    Route::get('show/{id}', [
         'uses' => 'CategoryControllerWithRepos@show',
         'as' => 'category.show'
     ]);
 
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'CategoryControllerWithRepos@create',
         'as' => 'category.create'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'CategoryControllerWithRepos@store',
         'as' => 'category.store'
     ]);
 
-    Route::get('update/{id}',[
+    Route::get('update/{id}', [
         'uses' => 'CategoryControllerWithRepos@edit',
         'as' => 'category.edit'
     ]);
 
-    Route::post('update/{id}',[
+    Route::post('update/{id}', [
         'uses' => 'CategoryControllerWithRepos@update',
         'as' => 'category.update'
     ]);
@@ -159,7 +160,7 @@ Route::group(['prefix' => 'category','middleware' => ['manual.auth'] ], function
         'as' => 'category.confirm'
     ]);
 
-    Route::post('delete/{id}',[
+    Route::post('delete/{id}', [
         'uses' => 'CategoryControllerWithRepos@destroy',
         'as' => 'category.destroy'
     ]);
@@ -167,33 +168,33 @@ Route::group(['prefix' => 'category','middleware' => ['manual.auth'] ], function
 
 
 // Animal (Product)
-Route::group(['prefix' => 'animal','middleware' => ['manual.auth'] ], function () {
+Route::group(['prefix' => 'animal', 'middleware' => ['manual.auth']], function () {
     Route::get('', [
         'uses' => 'AnimalControllerWithRepos@index',
         'as' => 'animal.index'
     ]);
 
-    Route::get('show/{id}',[
+    Route::get('show/{id}', [
         'uses' => 'AnimalControllerWithRepos@show',
         'as' => 'animal.show'
     ]);
 
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'AnimalControllerWithRepos@create',
         'as' => 'animal.create'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'AnimalControllerWithRepos@store',
         'as' => 'animal.store'
     ]);
 
-    Route::get('update/{id}',[
+    Route::get('update/{id}', [
         'uses' => 'AnimalControllerWithRepos@edit',
         'as' => 'animal.edit'
     ]);
 
-    Route::post('update/{id}',[
+    Route::post('update/{id}', [
         'uses' => 'AnimalControllerWithRepos@update',
         'as' => 'animal.update'
     ]);
@@ -203,35 +204,34 @@ Route::group(['prefix' => 'animal','middleware' => ['manual.auth'] ], function (
         'as' => 'animal.confirm'
     ]);
 
-    Route::post('delete/{id}',[
+    Route::post('delete/{id}', [
         'uses' => 'AnimalControllerWithRepos@destroy',
         'as' => 'animal.destroy'
     ]);
 });
 
 // Customer sign up
-Route::group(['prefix' => 'CentrallZoo', ], function (){
-    Route::get('',[
+Route::group(['prefix' => 'CentrallZoo',], function () {
+    Route::get('', [
         'uses' => 'CustomerControllerWithRepos@homepage',
         'as' => 'customer.customerView'
     ]);
 });
 
-Route::group(['prefix' => 'CustomerSignUp'], function (){
-    Route::get('',[
+Route::group(['prefix' => 'CustomerSignUp'], function () {
+    Route::get('', [
         'uses' => 'SignUpController@index',
         'as' => 'customer.customerSignUp'
     ]);
 });
-Route::group(['prefix' => 'SingleProduct'], function (){
-    Route::get('',[
+Route::group(['prefix' => 'SingleProduct'], function () {
+    Route::get('', [
         'uses' => 'SingleProductController@index',
         'as' => 'customer.singleProduct'
     ]);
-
 });
 // Customer
-Route::group(['prefix' => 'customer','middleware' => ['manual.auth'] ], function (){
+Route::group(['prefix' => 'customer', 'middleware' => ['manual.auth']], function () {
     Route::get('', [
         'uses' => 'CustomerControllerWithRepos@index',
         'as' => 'customer.index'
@@ -241,27 +241,27 @@ Route::group(['prefix' => 'customer','middleware' => ['manual.auth'] ], function
         'as' => 'customer.index'
     ]);
     //Customer
-    Route::get('show/{c_id}',[
+    Route::get('show/{c_id}', [
         'uses' => 'CustomerControllerWithRepos@show',
         'as' => 'customer.showC'
     ]);
 
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'CustomerControllerWithRepos@create',
         'as' => 'customer.createC'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'CustomerControllerWithRepos@store',
         'as' => 'customer.storeC'
     ]);
 
-    Route::get('update/{c_id}',[
+    Route::get('update/{c_id}', [
         'uses' => 'CustomerControllerWithRepos@edit',
         'as' => 'customer.editC'
     ]);
 
-    Route::post('update/{c_id}',[
+    Route::post('update/{c_id}', [
         'uses' => 'CustomerControllerWithRepos@update',
         'as' => 'customer.updateC'
     ]);
@@ -271,71 +271,73 @@ Route::group(['prefix' => 'customer','middleware' => ['manual.auth'] ], function
         'as' => 'customer.confirmC'
     ]);
 
-    Route::post('delete/{c_id}',[
+    Route::post('delete/{c_id}', [
         'uses' => 'CustomerControllerWithRepos@destroy',
         'as' => 'customer.destroyC'
     ]);
 });
 
 // Foods Route
-Route::group(['prefix' => 'foods'], function (){
+Route::group(['prefix' => 'foods'], function () {
     //index
-    Route::get('',[
+    Route::get('', [
         'uses' => 'FoodControllerWithRepos@index',
         'as' => 'food.index'
-    ]) ;
+    ]);
     // create
-    Route::get('create',[
+    Route::get('create', [
         'uses' => 'FoodControllerWithRepos@create',
         'as' => 'food.create'
     ]);
 
-    Route::post('create',[
+    Route::post('create', [
         'uses' => 'FoodControllerWithRepos@store',
         'as' => 'food.store'
     ]);
     // show
-    Route::get('show/{f_id}',[
+    Route::get('show/{f_id}', [
         'uses' => 'FoodControllerWithRepos@show',
         'as' => 'food.show'
     ]);
     //update
-    Route::get('update/{f_id}',[
+    Route::get('update/{f_id}', [
         'uses' => 'FoodControllerWithRepos@edit',
         'as' => 'food.edit'
     ]);
 
-    Route::post('update/{f_id}',[
+    Route::post('update/{f_id}', [
         'uses' => 'FoodControllerWithRepos@update',
         'as' => 'food.update'
     ]);
     //delete
-    Route::get('delete/{f_id}',[
+    Route::get('delete/{f_id}', [
         'uses' => 'FoodControllerWithRepos@confirm',
         'as' => 'food.confirm'
     ]);
 
-    Route::post('delete/{id}',[
+    Route::post('delete/{id}', [
         'uses' => 'FoodControllerWithRepos@destroy',
         'as' => 'food.destroy'
     ]);
 });
 
 //ManualAuth
-Route::group(['prefix' => 'auth'], function (){
-    Route::get('login',[
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('login', [
         'uses' => 'ManualAuthController@ask',
         'as' => 'auth.ask'
     ]);
 
-    Route::post('login',[
+    Route::post('login', [
         'uses' => 'ManualAuthController@signin',
         'as' => 'auth.signin'
     ]);
 
-    Route::get('logout',[
+    Route::get('logout', [
         'uses' => 'ManualAuthController@signout',
         'as' => 'auth.signout'
     ]);
 });
 
+// Employee
+Route::resource('employees', 'EmployeeControllerWithRepos');
